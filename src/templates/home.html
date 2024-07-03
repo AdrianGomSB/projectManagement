@@ -1,0 +1,40 @@
+{% extends './base2.html' %}
+
+{% block title %}Smarket{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+<br>
+
+<div class="container">
+    <h1>Recommended Products</h1>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Category Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for productos_sin_repeticion in transacciones %}
+                <tr>
+                    <td>{{ productos_sin_repeticion.id_material_origen }}</td>
+                    <td>{{ productos_sin_repeticion.des_categoria }}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    {% if pagination %}
+        <div class="pagination-wrapper">
+            {{ pagination.links }}
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

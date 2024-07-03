@@ -1,0 +1,37 @@
+{% extends './base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<form class="form-signin" action="{{ url_for('register') }}" method="post">
+  <img class="mb-4" src="{{ url_for('static', filename='img/Logo.png') }}" alt="">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <br>
+  {% for message in messages %}
+  <div class="alert alert-primary alert-dismissible" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <label for="floatingInput">User</label>
+  <input type="text" class="form-control" name="name" required>
+  <label for="password" class="form-label">Password</label>
+  <input type="password" class="form-control" id="password" name="password" required>
+
+  <label for="confirm_password" class="form-label">Confirm Password</label>
+  <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+
+{% endblock %}

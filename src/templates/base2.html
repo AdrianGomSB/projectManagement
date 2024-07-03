@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}{% endblock %}</title>
+    {% block customCSS %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img class="mb-4" src="{{ url_for('static', filename='img/Logo.png') }}" alt="" >
+            </div>
+            <ul class="nav-links">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/listar">Shopping</a></li>
+                <li><a href="/new_transaction">New Buy</a></li>
+            </ul>
+            <div class="user-info">
+                <h1>Welcome, {{ current_user.name }} </h1>
+                <a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </nav>
+    </header>
+    {% block body %}
+    {% endblock %}
+
+</body>
+</html>
